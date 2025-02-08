@@ -26,3 +26,21 @@ export interface DataList {
   total_pages: number;
   results: Image[];
 }
+
+export interface ImageContextType {
+  images: Image[];
+  loading: boolean;
+  error: boolean;
+  page: number;
+  totalPages: number;
+  noResults: boolean;
+  modalIsOpen: boolean;
+  selectedImage: Image | null;
+  currentIndex: number;
+  searchQuery: string;
+  handleSearch: (query: string) => void;
+  loadMore: () => void;
+  openModal: (image: Image, index: number) => void;
+  closeModal: () => void;
+  setCurrentIndex: (index: number) => void;
+}

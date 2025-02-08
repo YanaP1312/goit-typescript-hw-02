@@ -1,7 +1,7 @@
 import axios from "axios";
 import { DataList } from "./interfaces/interface";
 
-export const fetchImages = async (
+export const getImages = async (
   query: string,
   page: number
 ): Promise<DataList> => {
