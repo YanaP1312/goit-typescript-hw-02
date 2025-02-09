@@ -26,28 +26,25 @@ const ImageModal = () => {
       transform: "translate(-50%, -50%)",
     },
   };
+
   const handleNext = () => {
     if (currentIndex < images.length - 1) {
-      const newIndex = currentIndex + 1;
-      setCurrentIndex(newIndex);
-      navigate(
-        `gallery?query=${encodeURIComponent(
-          searchQuery
-        )}&page=${page}&index=${newIndex}`
-      );
+      setCurrentIndex(currentIndex + 1);
     }
   };
   const handlePrev = () => {
     if (currentIndex > 0) {
-      const newIndex = currentIndex - 1;
-      setCurrentIndex(newIndex);
-      navigate(
-        `gallery?query=${encodeURIComponent(
-          searchQuery
-        )}&page=${page}&index=${newIndex}`
-      );
+      setCurrentIndex(currentIndex - 1);
     }
   };
+
+  useEffect(() => {
+    navigate(
+      `gallery?query=${encodeURIComponent(
+        searchQuery
+      )}&page=${page}&index=${currentIndex}`
+    );
+  }, [currentIndex, navigate, searchQuery, page]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

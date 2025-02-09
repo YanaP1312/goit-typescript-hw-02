@@ -61,6 +61,7 @@ export const ImageProvider = ({ children }: PropsWithChildren) => {
     const query = params.get("query");
     const savedPage = Number(params.get("page")) || 1;
     const savedIndex = Number(params.get("index"));
+
     if (query) {
       setSearchQuery(query);
       setPage(savedPage);
@@ -116,14 +117,6 @@ export const ImageProvider = ({ children }: PropsWithChildren) => {
       setModalIsOpen(true);
     }
   }, [images, location.search]);
-
-  useEffect(() => {
-    navigate(
-      `gallery?query=${encodeURIComponent(
-        searchQuery
-      )}&page=${page}&index=${currentIndex}`
-    );
-  }, [currentIndex]);
 
   const loadMore = () => {
     const newPage = page + 1;
