@@ -2,7 +2,6 @@ import Modal from "react-modal";
 import { RiArrowLeftWideFill, RiArrowRightWideFill } from "react-icons/ri";
 import { useEffect } from "react";
 import { useImageContext } from "../../context/imageContext";
-import { GrSave } from "react-icons/gr";
 import s from "./ImageModal.module.css";
 
 const ImageModal = () => {
