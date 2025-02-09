@@ -14,13 +14,12 @@ const SearchBar: React.FC = () => {
 
     if (!inputElement || inputElement.value.trim() === "") {
       toast("Please enter search term!", {
-        position: "top-right",
-        icon: "⚠️",
-        style: {
-          borderRadius: "10px",
-          background: "#333",
-          color: "#fff",
-        },
+        icon: "✏️",
+        // style: {
+        //   borderRadius: "10px",
+        //   background: "#333",
+        //   color: "#fff",
+        // },
       });
       return;
     }

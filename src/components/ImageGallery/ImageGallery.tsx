@@ -7,7 +7,7 @@ const ImageGallery: React.FC = () => {
   return (
     <ul>
       {images.map((image: Image, index: number) => (
-        <li key={image.id} onClick={() => openModal(image, index)}>
+        <li key={image.id} onClick={() => openModal(index)}>
           <ImageCard image={image} />
         </li>
       ))}

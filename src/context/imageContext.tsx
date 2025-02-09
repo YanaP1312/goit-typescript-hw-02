@@ -8,6 +8,7 @@ import {
 import { getImages } from "../images-api";
 import { useLocation, useNavigate } from "react-router-dom";
 import { DataList, Image, ImageContextType } from "../interfaces/interface";
+import toast from "react-hot-toast";
 
 export const imageContext = createContext<ImageContextType | null>(null);
 
@@ -28,7 +29,6 @@ export const ImageProvider = ({ children }: PropsWithChildren) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [noResults, setNoResults] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,16 +37,36 @@ export const ImageProvider = ({ children }: PropsWithChildren) => {
     setSearchQuery(query);
     setPage(1);
     setImages([]);
-    navigate(`gallery?query=${encodeURIComponent(query)}&page=1`);
+    setError(false);
+    setNoResults(false);
+
+    try {
+      const fetchedImages = await getImages(query, 1);
+      if (!fetchedImages || fetchedImages.results.length === 0) {
+        setNoResults(true);
+        toast.error("No images found! Try a different search.");
+        return;
+      }
+      setImages(fetchedImages.results);
+      setTotalPages(fetchedImages.total_pages);
+      navigate(`gallery?query=${encodeURIComponent(query)}&page=1`);
+    } catch (err) {
+      setError(true);
+      toast.error("Something went wrong. Please try again!");
+    }
   };
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const query = params.get("query");
+    const savedPage = Number(params.get("page")) || 1;
+    const savedIndex = Number(params.get("index"));
     if (query) {
       setSearchQuery(query);
+      setPage(savedPage);
+      setCurrentIndex(savedIndex);
     }
-  }, [location.search]);
+  }, []);
 
   useEffect(() => {
     if (!searchQuery) return;
@@ -56,15 +76,21 @@ export const ImageProvider = ({ children }: PropsWithChildren) => {
         setError(false);
         setLoading(true);
         setNoResults(false);
-        const data: DataList = await getImages(searchQuery, page);
-        if (data.results.length === 0) {
-          setNoResults(true);
-          return;
+        let allImages: Image[] = [];
+        let lastTotalPages = 1;
+        for (let i = 1; i <= page; i++) {
+          const data: DataList = await getImages(searchQuery, i);
+          if (data.results.length === 0) {
+            setNoResults(true);
+            return;
+          }
+          allImages = [...allImages, ...data.results];
+          lastTotalPages = data.total_pages;
         }
 
-        setImages((prev) => [...prev, ...data.results]);
+        setImages(allImages);
 
-        setTotalPages(data.total_pages);
+        setTotalPages(lastTotalPages);
       } catch (error) {
         setError(true);
       } finally {
@@ -75,20 +101,43 @@ export const ImageProvider = ({ children }: PropsWithChildren) => {
     fetchImages();
   }, [searchQuery, page]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const indexFromUrl = params.get("index");
+
+    if (indexFromUrl === null) {
+      setModalIsOpen(false);
+      return;
+    }
+    const index = Number(indexFromUrl);
+
+    if (!isNaN(index) && index > -1 && images.length > index) {
+      setCurrentIndex(index);
+      setModalIsOpen(true);
+    }
+  }, [images, location.search]);
+
   const loadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+    const newPage = page + 1;
+    setPage(newPage);
+    navigate(
+      `gallery?query=${encodeURIComponent(searchQuery)}&page=${newPage}`
+    );
   };
 
-  const openModal = (image: Image, index: number) => {
+  const openModal = (index: number) => {
     setModalIsOpen(true);
-
-    setSelectedImage(image);
     setCurrentIndex(index);
+    navigate(
+      `gallery?query=${encodeURIComponent(
+        searchQuery
+      )}&page=${page}&index=${index}`
+    );
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
-    setSelectedImage(null);
+    navigate(`gallery?query=${encodeURIComponent(searchQuery)}&page=${page}`);
   };
 
   return (
@@ -101,7 +150,6 @@ export const ImageProvider = ({ children }: PropsWithChildren) => {
         totalPages,
         noResults,
         modalIsOpen,
-        selectedImage,
         currentIndex,
         searchQuery,
         handleSearch,

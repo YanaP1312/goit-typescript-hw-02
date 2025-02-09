@@ -35,12 +35,11 @@ export interface ImageContextType {
   totalPages: number;
   noResults: boolean;
   modalIsOpen: boolean;
-  selectedImage: Image | null;
   currentIndex: number;
   searchQuery: string;
   handleSearch: (query: string) => void;
   loadMore: () => void;
-  openModal: (image: Image, index: number) => void;
+  openModal: (index: number) => void;
   closeModal: () => void;
   setCurrentIndex: (index: number) => void;
 }

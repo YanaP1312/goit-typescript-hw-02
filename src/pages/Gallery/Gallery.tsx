@@ -7,18 +7,15 @@ import Loader from "../../components/Loader/Loader";
 import ImageModal from "../../components/ImageModal/ImageModal";
 
 const Gallery = () => {
-  const { images, loading, error, page, totalPages, noResults, selectedImage } =
-    useImageContext();
+  const { images, loading, page, totalPages, modalIsOpen } = useImageContext();
   return (
     <div>
       <Link to="/">Let's go searching</Link>
-      {noResults && toast("No photos found matching your request")}
-
       {images.length > 0 && <ImageGallery />}
-      {loading && <Loader />}
-      {error && toast.error("Something went wrong, try again!")}
+
       {images.length > 0 && page < totalPages && <LoadMoreBtn />}
-      {selectedImage && <ImageModal />}
+      {loading && <Loader />}
+      {modalIsOpen && <ImageModal />}
     </div>
   );
 };
