@@ -5,8 +5,16 @@ import { useImageContext } from "../../context/imageContext";
 import s from "./ImageModal.module.css";
 
 const ImageModal = () => {
-  const { modalIsOpen, closeModal, images, currentIndex, setCurrentIndex } =
-    useImageContext();
+  const {
+    modalIsOpen,
+    closeModal,
+    images,
+    currentIndex,
+    setCurrentIndex,
+    searchQuery,
+    page,
+    navigate,
+  } = useImageContext();
 
   const customStyles = {
     content: {
@@ -20,12 +28,24 @@ const ImageModal = () => {
   };
   const handleNext = () => {
     if (currentIndex < images.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+      const newIndex = currentIndex + 1;
+      setCurrentIndex(newIndex);
+      navigate(
+        `gallery?query=${encodeURIComponent(
+          searchQuery
+        )}&page=${page}&index=${newIndex}`
+      );
     }
   };
   const handlePrev = () => {
     if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
+      const newIndex = currentIndex - 1;
+      setCurrentIndex(newIndex);
+      navigate(
+        `gallery?query=${encodeURIComponent(
+          searchQuery
+        )}&page=${page}&index=${newIndex}`
+      );
     }
   };
 

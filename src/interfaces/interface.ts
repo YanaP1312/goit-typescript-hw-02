@@ -1,3 +1,5 @@
+import { NavigateFunction } from "react-router-dom";
+
 export interface User {
   id: string;
   username: string;
@@ -42,4 +44,5 @@ export interface ImageContextType {
   openModal: (index: number) => void;
   closeModal: () => void;
   setCurrentIndex: (index: number) => void;
+  navigate: NavigateFunction;
 }

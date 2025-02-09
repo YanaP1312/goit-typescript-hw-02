@@ -117,6 +117,14 @@ export const ImageProvider = ({ children }: PropsWithChildren) => {
     }
   }, [images, location.search]);
 
+  useEffect(() => {
+    navigate(
+      `gallery?query=${encodeURIComponent(
+        searchQuery
+      )}&page=${page}&index=${currentIndex}`
+    );
+  }, [currentIndex]);
+
   const loadMore = () => {
     const newPage = page + 1;
     setPage(newPage);
@@ -157,6 +165,7 @@ export const ImageProvider = ({ children }: PropsWithChildren) => {
         openModal,
         closeModal,
         setCurrentIndex,
+        navigate,
       }}
     >
       {children}
