@@ -6,7 +6,7 @@ import {
   PropsWithChildren,
 } from "react";
 import { getImages } from "../images-api";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { DataList, Image, ImageContextType } from "../interfaces/interface";
 
 export const imageContext = createContext<ImageContextType | null>(null);
@@ -31,13 +31,22 @@ export const ImageProvider = ({ children }: PropsWithChildren) => {
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSearch = async (query: string) => {
     setSearchQuery(query);
     setPage(1);
     setImages([]);
-    navigate("/gallery");
+    navigate(`gallery?query=${encodeURIComponent(query)}&page=1`);
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const query = params.get("query");
+    if (query) {
+      setSearchQuery(query);
+    }
+  }, [location.search]);
 
   useEffect(() => {
     if (!searchQuery) return;

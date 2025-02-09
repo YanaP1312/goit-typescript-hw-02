@@ -31,10 +31,10 @@ const ImageModal = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight" && currentIndex < images.length) {
+      if (e.key === "ArrowRight" && currentIndex < images.length - 1) {
         handleNext();
       }
-      if (e.key === "ArrowLeft" && images.length > 0) {
+      if (e.key === "ArrowLeft" && currentIndex > 0) {
         handlePrev();
       }
     };
@@ -43,6 +43,8 @@ const ImageModal = () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [currentIndex, images]);
+
+  console.log(currentIndex);
 
   return (
     <Modal
@@ -59,7 +61,7 @@ const ImageModal = () => {
           onClick={handlePrev}
           disabled={currentIndex === 0}
         >
-          <RiArrowLeftWideFill size="30" color="black" />
+          <RiArrowLeftWideFill size="30" />
         </button>
         <div className={s.image}>
           <img
@@ -74,7 +76,7 @@ const ImageModal = () => {
           onClick={handleNext}
           disabled={currentIndex === images.length - 1}
         >
-          <RiArrowRightWideFill size="30" color="black" />
+          <RiArrowRightWideFill size="30" />
         </button>
       </div>
       <div className={s.photoInfo}>

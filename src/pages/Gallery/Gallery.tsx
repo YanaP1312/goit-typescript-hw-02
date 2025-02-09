@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import ImageGallery from "../../components/ImageGallery/ImageGallery";
 import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
-import ImageModal from "../../components/ImageModal/ImageModal";
 import Loader from "../../components/Loader/Loader";
+import ImageModal from "../../components/ImageModal/ImageModal";
 
 const Gallery = () => {
   const { images, loading, error, page, totalPages, noResults, selectedImage } =

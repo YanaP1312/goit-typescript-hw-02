@@ -4,15 +4,18 @@ import "./index.css";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-// import { ImageProvider } from "./context/imageContext.tsx";
+import Modal from "react-modal";
+import { ImageProvider } from "./context/imageContext.tsx";
+
+Modal.setAppElement("#root");
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    {/* <ImageProvider> */}
-    <BrowserRouter>
+  // <StrictMode>
+  <BrowserRouter>
+    <ImageProvider>
       <App />
       <Toaster />
-    </BrowserRouter>
-    {/* </ImageProvider> */}
-  </StrictMode>
+    </ImageProvider>
+  </BrowserRouter>
+  // </StrictMode>
 );

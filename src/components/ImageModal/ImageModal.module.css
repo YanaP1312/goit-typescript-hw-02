@@ -24,6 +24,7 @@
 }
 
 .btn {
+  color: rgba(0, 0, 0, 0.8);
   margin: 10px;
   background-color: transparent;
   border: none;
@@ -32,6 +33,12 @@
 
 .btn:hover {
   transform: scale(1.2);
+}
+
+.btn:disabled {
+  opacity: 0.3;
+  pointer-events: none;
+  transform: none;
 }
 
 .img {
