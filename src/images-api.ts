@@ -6,11 +6,10 @@ export const getImages = async (
   page: number
 ): Promise<DataList> => {
   axios.defaults.baseURL = "https://api.unsplash.com";
-  const myApiKey = "z_1cL7_czUThYTzFTdVk3GkCtU762TCDzKRopZnNCR8";
 
   const { data } = await axios.get<DataList>("/search/photos/?", {
     params: {
-      client_id: myApiKey,
+      client_id: import.meta.env.VITE_UNSPLASH_API_KEY,
       query: query,
       page: page,
       per_page: 15,
