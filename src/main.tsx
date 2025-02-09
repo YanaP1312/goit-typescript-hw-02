@@ -10,12 +10,12 @@ import { ImageProvider } from "./context/imageContext.tsx";
 Modal.setAppElement("#root");
 
 createRoot(document.getElementById("root")!).render(
-  // <StrictMode>
-  <BrowserRouter>
-    <ImageProvider>
-      <App />
-      <Toaster />
-    </ImageProvider>
-  </BrowserRouter>
-  // </StrictMode>
+  <StrictMode>
+    <BrowserRouter>
+      <ImageProvider>
+        <App />
+        <Toaster />
+      </ImageProvider>
+    </BrowserRouter>
+  </StrictMode>
 );
