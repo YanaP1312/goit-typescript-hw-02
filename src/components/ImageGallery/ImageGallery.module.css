@@ -1,0 +1,23 @@
+.wrap {
+  margin: 15px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.masonryGrid {
+  display: flex;
+  max-width: 1200px;
+  gap: 10px;
+}
+
+.masonryColumn {
+  padding: 0 5px;
+}
+
+.masonryItem {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}

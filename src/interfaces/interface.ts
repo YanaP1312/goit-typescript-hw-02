@@ -18,9 +18,6 @@ export interface Image {
     regular: string;
     small: string;
   };
-  links: {
-    download?: string;
-  };
 }
 
 export interface DataList {

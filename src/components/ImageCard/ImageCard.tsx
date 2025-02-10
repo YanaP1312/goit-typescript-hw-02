@@ -1,5 +1,6 @@
 import { Image } from "../../interfaces/interface";
 import { AiFillHeart } from "react-icons/ai";
+import s from "./ImageCard.module.css";
 
 interface ImageCardProps {
   image: Image;
@@ -7,10 +8,10 @@ interface ImageCardProps {
 
 const ImageCard: React.FC<ImageCardProps> = ({ image }) => {
   return (
-    <div>
+    <div className={s.wrap}>
       <img src={image.urls.small} alt={image.description || "Image"} />
-      <p>
-        <AiFillHeart />
+      <p className={s.likes}>
+        <AiFillHeart color="red" />
         &nbsp;
         {image.likes}
       </p>
