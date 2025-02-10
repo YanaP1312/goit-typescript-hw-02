@@ -8,8 +8,12 @@ interface ImageCardProps {
 
 const ImageCard: React.FC<ImageCardProps> = ({ image }) => {
   return (
-    <div className={s.wrap}>
-      <img src={image.urls.small} alt={image.description || "Image"} />
+    <div className={s.card}>
+      <img
+        className={s.image}
+        src={image.urls.small}
+        alt={image.description || "Image"}
+      />
       <p className={s.likes}>
         <AiFillHeart color="red" />
         &nbsp;

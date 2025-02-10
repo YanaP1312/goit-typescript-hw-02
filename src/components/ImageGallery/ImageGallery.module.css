@@ -1,15 +1,14 @@
 .wrap {
-  margin: 15px auto;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 10px;
 }
 
 .masonryGrid {
   display: flex;
-  max-width: 1200px;
-  gap: 10px;
 }
 
 .masonryColumn {
@@ -20,4 +19,17 @@
   width: 100%;
   margin-bottom: 10px;
   border-radius: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .wrap {
+    width: 768px;
+    padding: 16px;
+  }
+}
+
+@media screen and (min-width: 1168px) {
+  .wrap {
+    width: 1168px;
+  }
 }

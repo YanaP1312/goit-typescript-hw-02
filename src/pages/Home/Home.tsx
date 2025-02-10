@@ -1,10 +1,15 @@
+import Loader from "../../components/Loader/Loader";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { useImageContext } from "../../context/imageContext";
+import s from "./Home.module.css";
 
 const Home = () => {
+  const { loading } = useImageContext();
   return (
-    <div>
+    <main className={s.main}>
       <SearchBar />
-    </div>
+      {loading && <Loader />}
+    </main>
   );
 };
 

@@ -10,7 +10,7 @@ const ImageGallery: React.FC = () => {
   return (
     <div className={s.wrap}>
       <Masonry
-        breakpointCols={{ default: 3, 800: 2, 500: 1 }}
+        breakpointCols={{ default: 3, 800: 2, 360: 1 }}
         className={s.masonryGrid}
         columnClassName={s.masonryColumn}
       >

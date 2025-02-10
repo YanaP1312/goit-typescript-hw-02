@@ -15,11 +15,6 @@ const SearchBar: React.FC = () => {
     if (!inputElement || inputElement.value.trim() === "") {
       toast("Please enter search term!", {
         icon: "✏️",
-        // style: {
-        //   borderRadius: "10px",
-        //   background: "#333",
-        //   color: "#fff",
-        // },
       });
       return;
     }
@@ -38,6 +33,7 @@ const SearchBar: React.FC = () => {
           placeholder="Search images and photos"
         />
         <button>
+          Search&nbsp;
           <LuSearch />
         </button>
       </form>
