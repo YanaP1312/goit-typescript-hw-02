@@ -4,7 +4,6 @@ import ImageGallery from "../../components/ImageGallery/ImageGallery";
 import LoadMoreBtn from "../../components/LoadMoreBtn/LoadMoreBtn";
 import Loader from "../../components/Loader/Loader";
 import ImageModal from "../../components/ImageModal/ImageModal";
-import s from "./Gallery.module.css";
 
 const Gallery = () => {
   const { images, loading, page, totalPages, modalIsOpen } = useImageContext();
