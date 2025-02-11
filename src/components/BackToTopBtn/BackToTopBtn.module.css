@@ -1,0 +1,45 @@
+.btn {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgb(71, 71, 255);
+  border: none;
+  border-radius: 50%;
+  color: rgb(239, 243, 247);
+
+  transition: background-color 1s ease-in-out, opacity 0.3s ease-in-out,
+    transform 1s ease-in-out;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.btn.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.btn:hover {
+  background-color: rgb(42, 42, 183);
+}
+
+@media screen and (min-width: 768px) {
+  .btn {
+    bottom: 20px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (min-width: 1168px) {
+  .btn {
+    width: 50px;
+    height: 50px;
+  }
+}

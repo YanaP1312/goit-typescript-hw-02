@@ -24,6 +24,12 @@
   color: rgb(42, 42, 183);
 }
 
+.observer {
+  height: 1px;
+  width: 100%;
+  background-color: transparent;
+}
+
 @media screen and (min-width: 768px) {
   .link {
     margin-top: 16px;
