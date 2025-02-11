@@ -1,6 +1,68 @@
-.main {
+.wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  min-width: 320px;
+}
+
+.wrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  margin: auto;
+
+  position: relative;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.title {
+  width: 200px;
+  position: absolute;
+  right: -10px;
+  top: 120px;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  color: rgb(42, 42, 183);
+  font-weight: 900;
+}
+
+.span {
+  font-weight: 500;
+  font-style: italic;
+}
+
+.loaderWrap {
+  position: absolute;
+  top: 30px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+    margin: auto;
+  }
+
+  .title {
+    width: 340px;
+    right: 20px;
+    font-size: 26px;
+  }
+}
+
+@media screen and (min-width: 1168px) {
+  .container {
+    width: 1168px;
+  }
 }

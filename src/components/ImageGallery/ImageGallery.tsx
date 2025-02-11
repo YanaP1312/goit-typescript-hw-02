@@ -4,7 +4,7 @@ import ImageCard from "../ImageCard/ImageCard";
 import Masonry from "react-masonry-css";
 import s from "./ImageGallery.module.css";
 
-const ImageGallery: React.FC = () => {
+const ImageGallery = () => {
   const { images, openModal } = useImageContext();
 
   return (

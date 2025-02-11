@@ -2,6 +2,7 @@ import { LuSearch } from "react-icons/lu";
 import toast from "react-hot-toast";
 import { useImageContext } from "../../context/imageContext";
 import { FormEvent } from "react";
+import s from "./SearchBar.module.css";
 
 const SearchBar: React.FC = () => {
   const { handleSearch } = useImageContext();
@@ -24,15 +25,16 @@ const SearchBar: React.FC = () => {
 
   return (
     <section>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={s.form}>
         <input
           autoComplete="off"
           autoFocus
           name="imageName"
           type="text"
           placeholder="Search images and photos"
+          className={s.input}
         />
-        <button>
+        <button className={s.btn}>
           Search&nbsp;
           <LuSearch />
         </button>

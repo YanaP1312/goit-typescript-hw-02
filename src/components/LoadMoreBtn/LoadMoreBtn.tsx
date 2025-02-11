@@ -4,7 +4,7 @@ import s from "./LoadMoreBtn.module.css";
 const LoadMoreBtn = () => {
   const { loadMore } = useImageContext();
   return (
-    <div>
+    <div className={s.container}>
       <button className={s.btn} onClick={loadMore}>
         Load more
       </button>
